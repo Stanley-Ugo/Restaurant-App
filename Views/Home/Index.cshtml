@@ -73,13 +73,12 @@
             <div class="col-md-6">
                 <div class="form-group">
                     Quantity :
-                    @Html.DropDownList("Item", new SelectList(Model.Item2, "Value", "Text"),
-                              new { @class = "form-control" })
+                    <input type="text" readonly="readonly" id="txtUnitPrice" value="0.00" name="UnitPrice" class="form-control" />
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    Unit Price :
+                    Discount :
                     <input type="text" readonly="readonly" id="txtUnitPrice" value="0.00" name="UnitPrice" class="form-control" />
                 </div>
             </div>
