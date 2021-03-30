@@ -5,8 +5,7 @@ using System.Web;
 
 namespace RestaurantApp.ViewModel
 {
-    public class ItemViewModel
+    public class CustomerViewModel
     {
-
     }
 }
