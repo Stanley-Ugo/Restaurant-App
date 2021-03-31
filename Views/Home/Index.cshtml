@@ -36,7 +36,22 @@
 
         tblItemList.append(ItemList);
 
+        FinalItemTotal();
+
         ResetItem();
+    }
+
+    function FinalItemTotal() {
+        $("#txtFinalTotal").val("0.00");
+
+        var FinalTotal = 0.00;
+
+        $("#tblRestaurantItemList").find("tr:gt(0)").each(function () {
+            var Total = parseFloat($(this).find("td:eq(5)").text());
+            FinalTotal += Total;
+        });
+
+        $("#txtFinalTotal").val(parseFloat(FinalTotal).toFixed(2));
     }
 
     function RemoveItem(itemId) {
@@ -109,7 +124,7 @@
     <div class="container">
         <br />
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
                     Customer :
                     @Html.DropDownList("Customer", new SelectList(Model.Item1, "Value", "Text"),
@@ -117,11 +132,18 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
                     Payment Type :
                     @Html.DropDownList("PaymentType", new SelectList(Model.Item3, "Value", "Text"),
                               new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    Total :
+                    <input style="text-align: right;" type="text" value="0.00" name="FinalTotal" readonly="readonly" id="txtFinalTotal" class="form-control" />
                 </div>
             </div>
         </div>
@@ -186,7 +208,7 @@
                     Item Id
                 </th>
                 <th>
-                    Item
+                    Item Name
                 </th>
                 <th>
                     Unit Price
