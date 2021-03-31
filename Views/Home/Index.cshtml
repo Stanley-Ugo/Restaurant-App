@@ -23,7 +23,28 @@
     });
 
     function AddToTheItemList() {
+        var tblItemList = $("#tblRestaurantItemList");
+        var UnitPrice = $("#txtUnitPrice").val();
+        var Quantity = $("#txtQuantity").val();
+        var Discount = $("#txtDiscount").val();
+        var ItemId = $("#Item").val();
+        var ItemName = $("#Item option:selected").text();
+        var Total = (UnitPrice * Quantity) - Discount;
 
+        var ItemList = "<tr><td hidden>" + ItemId + "</td><td>" + ItemName + "</td><td>" + parseFloat(UnitPrice).toFixed(2) + "</td><td>" + parseFloat(Quantity).toFixed(2) + "</td><td>" + parseFloat(Discount).toFixed(2)
+            + "</td><td>" + parseFloat(Total).toFixed(2) + "</td><td> <input type='button' value='Remove' name='remove' class='btn btn-danger' onclick='RemoveItem(this)' /> </td></tr>";
+
+        tblItemList.append(ItemList);
+
+        ResetItem();
+    }
+
+    function ResetItem() {
+        $("#txtUnitPrice").val('');
+        $("#txtQuantity").val('');
+        $("#txtDiscount").val('');
+        $("#Item").val(0);
+        $("#txtTotal").val('');
     }
 
     function CalculateSubTotal() {
@@ -154,14 +175,14 @@
 
 <fieldset>
     <legend>Restaurant Listed Items</legend>
-    <table style="width: 100%">
+    <table style="width: 100%" id="tblRestaurantItemList">
         <thead>
             <tr>
                 <th hidden>
                     Item Id
                 </th>
                 <th>
-                    Item Name
+                    Item
                 </th>
                 <th>
                     Unit Price
