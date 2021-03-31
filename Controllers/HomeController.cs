@@ -1,4 +1,5 @@
-﻿using RestaurantApp.Repositories;
+﻿using RestaurantApp.Models;
+using RestaurantApp.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,11 @@ namespace RestaurantApp.Controllers
 {
     public class HomeController : Controller
     {
+        private RestaurantDBEntities objRestaurantDBEntities;
+        public HomeController()
+        {
+            objRestaurantDBEntities = new RestaurantDBEntities();
+        }
         // GET: Home
         public ActionResult Index()
         {
@@ -22,6 +28,14 @@ namespace RestaurantApp.Controllers
                 (objCustomerRepository.GetAllCustomers(),objItemRepository.GetAllItems(), objPaymentTypeRepository.GetAllPaymentType());
 
             return View(objMultipleModels);
+        }
+
+        [HttpGet]
+        public JsonResult getItemUnitPrice(int itemId)
+        {
+            decimal unitPrice = objRestaurantDBEntities.Items.Single(model => model.ItemId == itemId).ItemPrice;
+
+            return Json(unitPrice, JsonRequestBehavior.AllowGet);
         }
     }
 }

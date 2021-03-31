@@ -3,6 +3,35 @@
     ViewBag.Title = "Index";
 }
 
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Item").val(0);
+        $("#Item").change(function () {
+            var itemId = $("#Item").val();
+            GetItemUnitPrice(itemId);
+        });
+    });
+
+    function GetItemUnitPrice(itemId) {
+        $.ajax({
+            async: true,
+            type: 'GET',
+            dataType: 'JSON',
+            contentType: 'application/json; charset=utf-8',
+            data: { itemId: itemId },
+            url: '/home/getItemUnitPrice',
+            success: function (data) {
+                $("#txtUnitPrice").val(parseFloat(data).toFixed(2));
+            },
+            error: function () {
+                alert("There's a problem with the Unit price!!!");
+            }
+        });
+    }
+</script>
+
 <style>
     fieldset {
         border: 1px solid #ddd !important;
@@ -31,6 +60,7 @@
         Restaurant
     </legend>
     <div class="container">
+        <br />
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
@@ -50,51 +80,83 @@
         </div>
     </div>
 </fieldset>
+<br />
 
 <fieldset>
     <legend>Restaurant Items</legend>
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
                     Item :
                     @Html.DropDownList("Item", new SelectList(Model.Item2, "Value", "Text"),
                               new { @class = "form-control" })
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
                     Unit Price :
-                    <input type="text" readonly="readonly" id="txtUnitPrice" value="0.00" name="UnitPrice" class="form-control" />
+                    <input  style="text-align: right;" type="text" readonly="readonly" id="txtUnitPrice" value="0.00" name="UnitPrice" class="form-control" />
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
                     Quantity :
-                    <input type="text" readonly="readonly" id="txtQuantity" value="0.00" name="Quantity" class="form-control" />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    Discount :
-                    <input type="text" id="txtDiscount" value="0.00" name="Discount" class="form-control" />
+                    <input  style="text-align: right;" type="text" id="txtQuantity" value="0.00" name="Quantity" class="form-control" />
                 </div>
             </div>
         </div>
+        <br />
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
-                    Total :
-                    <input type="text" readonly="readonly" id="txtTotal" value="0.00" name="Total" class="form-control" />
+                    Discount :
+                    <input  style="text-align: right;" type="text" id="txtDiscount" value="0.00" name="Discount" class="form-control" />
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
-                    <input type="button" value="Add To List"/>
+                    Total :
+                    <input  style="text-align: right;" type="text" readonly="readonly" id="txtTotal" value="0.00" name="Total" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="button" style="margin-top: 20px;" value="Add To List" name="AddToList" id="btnAddToList" class="btn btn-success" />
                 </div>
             </div>
         </div>
     </div>
+</fieldset>
+<br />
+
+<fieldset>
+    <legend>Restaurant Listed Items</legend>
+    <table style="width: 100%">
+        <thead>
+            <tr>
+                <th hidden>
+                    Item Id
+                </th>
+                <th>
+                    Item Name
+                </th>
+                <th>
+                    Unit Price
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Discount
+                </th>
+                <th>
+                    Total
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+    </table>
 </fieldset>
