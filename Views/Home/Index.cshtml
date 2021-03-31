@@ -39,10 +39,14 @@
         ResetItem();
     }
 
+    function RemoveItem(itemId) {
+        $(itemId).closest('tr').remove();
+    }
+
     function ResetItem() {
         $("#txtUnitPrice").val('');
         $("#txtQuantity").val('');
-        $("#txtDiscount").val('');
+        $("#txtDiscount").val('0.00');
         $("#Item").val(0);
         $("#txtTotal").val('');
     }
