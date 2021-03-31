@@ -12,7 +12,29 @@
             var itemId = $("#Item").val();
             GetItemUnitPrice(itemId);
         });
+
+        $("input[type=text]").change(function () {
+            CalculateSubTotal();
+        });
+
+        $("#btnAddToList").click(function () {
+            AddToTheItemList();
+        });
     });
+
+    function AddToTheItemList() {
+
+    }
+
+    function CalculateSubTotal() {
+        var UnitPrice = $("#txtUnitPrice").val();
+        var Quantity = $("#txtQuantity").val();
+        var Discount = $("#txtDiscount").val();
+
+        var Total = (UnitPrice * Quantity) - Discount;
+
+        $("#txtTotal").val(parseFloat(Total).toFixed(2));
+    }
 
     function GetItemUnitPrice(itemId) {
         $.ajax({
