@@ -245,11 +245,31 @@
                 <div class="container">
                     <div class="row">
                         <div class="form-group col-md-6">
-                            Total : 
-                            <input type="text" id="txtPaymentTotal" readonly="readonly" value="0.00" class="form-control" />
+                            Payment Total :
+                            <input style="text-align: right;" type="text" id="txtPaymentTotal" readonly="readonly" value="0.00" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            Payment Amount :
+                            <input style="text-align: right;" type="text" id="txtPaymentAmount" value="0.00" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            Return Total :
+                            <input style="text-align: right;" type="text" id="txtReturnTotal" value="0.00" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            Balance Amount :
+                            <input style="text-align: right;" type="text" id="txtBalance" readonly="readonly" value="0.00" class="form-control" />
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-success" id="btnPayment" value="Payment">Payment</button>
+                <button class="btn btn-danger" id="btnClose" data-dismiss="modal" value="close">Payment Close</button>
             </div>
         </div>
     </div>
