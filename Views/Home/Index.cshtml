@@ -17,6 +17,10 @@
             CalculateSubTotal();
         });
 
+        $("input[type=text]").keyup(function () {
+            CalculateBalance();
+        });
+
         $("#btnAddToList").click(function () {
             AddToTheItemList();
         });
@@ -61,6 +65,15 @@
         var PaymentAmout = $("#txtPaymentAmount").val();
         var ReturnAmount = $("#txtReturnTotal").val();
         var BalanceAmount = parseFloat(FinalAmount) - parseFloat(PaymentAmout) + parseFloat(ReturnAmount);
+
+        $("#txtBalance").val(parseFloat(BalanceAmount).toFixed(2));
+
+        if (parseFloat(BalanceAmount) === 0) {
+            $("#btnPayment").removeAttr("disabled");
+        }
+        else {
+            $("#btnPayment").attr("disabled", "disabled");
+        }
     }
 
     function RemoveItem(itemId) {
