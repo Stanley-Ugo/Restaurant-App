@@ -68,7 +68,7 @@
 
         $("#txtBalance").val(parseFloat(BalanceAmount).toFixed(2));
 
-        if (parseFloat(BalanceAmount) === 0) {
+        if (parseFloat(BalanceAmount) == 0) {
             $("#btnPayment").removeAttr("disabled");
         }
         else {
