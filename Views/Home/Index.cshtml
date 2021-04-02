@@ -53,6 +53,14 @@
 
         $("#txtFinalTotal").val(parseFloat(FinalTotal).toFixed(2));
         $("#txtPaymentTotal").val(parseFloat(FinalTotal).toFixed(2));
+        $("#txtBalance").val(parseFloat(FinalTotal).toFixed(2));
+    }
+
+    function CalculateBalance() {
+        var FinalAmount = $("#txtPaymentTotal").val();
+        var PaymentAmout = $("#txtPaymentAmount").val();
+        var ReturnAmount = $("#txtReturnTotal").val();
+        var BalanceAmount = parseFloat(FinalAmount) - parseFloat(PaymentAmout) + parseFloat(ReturnAmount);
     }
 
     function RemoveItem(itemId) {
