@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RestaurantApp.ViewModel
 {
-    public class OrderViewModel
+    public class OrderDetailViewModel
     {
         public int OrderId { get; set; }
         public int PaymemtTypeId { get; set; }
@@ -13,5 +13,6 @@ namespace RestaurantApp.ViewModel
         public string OrderNumber { get; set; }
         public DateTime OrderDate { get; set; }
         public decimal FinalTotal { get; set; }
+        public decimal Quantity { get; set; }
     }
 }
