@@ -31,7 +31,42 @@
     });
 
     function FinalPayment() {
+        var objOrderViewModel = {};
 
+        var ListOfOrderDetailViewModel = new Array();
+        //ListOfOrderDetailViewModel
+        objOrderViewModel.PaymentTypeId = $("#PaymentType").val();
+        objOrderViewModel.CustomerId = $("Customer").val();
+        objOrderViewModel.FinalTotal = $("#txtFinalTotal").val();
+
+        $("#tblRestaurantItemList").find("tr:gt(0)").each(function () {
+            var OrderDetailViewModel = {};
+
+            OrderDetailViewModel.Total = parseFloat($(this).find("td:eq(5)").text());
+            OrderDetailViewModel.ItemId = parseFloat($(this).find("td:eq(0)").text());
+            OrderDetailViewModel.UnitPrice = parseFloat($(this).find("td:eq(2)").text()); 
+            OrderDetailViewModel.Quantity = parseFloat($(this).find("td:eq(3)").text()); 
+            OrderDetailViewModel.Discount = parseFloat($(this).find("td:eq(4)").text());
+
+            ListOfOrderDetailViewModel.push(OrderDetailViewModel);
+        });
+
+        objOrderViewModel.ListOfOrderDetailViewModel = ListOfOrderDetailViewModel;
+
+        $.ajax({
+            async: true,
+            type: 'POST',
+            dataType: 'JSON',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(objOrderViewModel),
+            url: '/Home/Index',
+            success: function (data) {
+                    
+            },
+            error: function () {
+                alert("There was a problem adding the data");
+            },
+        });
     }
 
     function AddToTheItemList() {
