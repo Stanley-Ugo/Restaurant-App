@@ -14,5 +14,9 @@ namespace RestaurantApp.ViewModel
         public DateTime OrderDate { get; set; }
         public decimal FinalTotal { get; set; }
         public decimal Quantity { get; set; }
+        public decimal Discount { get; set; }
+        public int ItemId { get; internal set; }
+        public decimal Total { get; internal set; }
+        public decimal UnitPrice { get; internal set; }
     }
 }

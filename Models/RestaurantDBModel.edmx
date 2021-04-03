@@ -37,6 +37,7 @@
           <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Discount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -132,6 +133,7 @@
           <Property Name="Discount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <NavigationProperty Name="Order" Relationship="RestaurantDBModel.FK_OrderDetails_Orders" FromRole="OrderDetail" ToRole="Order" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -201,6 +203,7 @@
           <EntitySetMapping Name="OrderDetails">
             <EntityTypeMapping TypeName="RestaurantDBModel.OrderDetail">
               <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
