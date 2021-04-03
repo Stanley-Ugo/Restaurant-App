@@ -1,5 +1,6 @@
 ﻿using RestaurantApp.Models;
 using RestaurantApp.Repositories;
+using RestaurantApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,12 @@ namespace RestaurantApp.Controllers
             decimal unitPrice = objRestaurantDBEntities.Items.Single(model => model.ItemId == itemId).ItemPrice;
 
             return Json(unitPrice, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult Index(OrderViewModel objOrderViewModel)
+        {
+            return Json("", JsonRequestBehavior.AllowGet);
         }
     }
 }
