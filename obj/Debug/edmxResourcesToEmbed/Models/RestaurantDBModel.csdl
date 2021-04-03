@@ -45,6 +45,7 @@
     <Property Name="Discount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
     <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
     <NavigationProperty Name="Order" Relationship="RestaurantDBModel.FK_OrderDetails_Orders" FromRole="OrderDetail" ToRole="Order" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
   </EntityType>
   <EntityType Name="Order">
     <Key>

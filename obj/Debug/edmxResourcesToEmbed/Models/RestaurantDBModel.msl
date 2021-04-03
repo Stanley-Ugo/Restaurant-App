@@ -29,6 +29,7 @@
     <EntitySetMapping Name="OrderDetails">
       <EntityTypeMapping TypeName="RestaurantDBModel.OrderDetail">
         <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="Total" ColumnName="Total" />
           <ScalarProperty Name="Discount" ColumnName="Discount" />
           <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />

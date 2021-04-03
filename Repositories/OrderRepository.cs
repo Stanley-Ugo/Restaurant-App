@@ -39,6 +39,18 @@ namespace RestaurantApp.Repositories
                 objOrderDetail.Total = item.Total;
                 objOrderDetail.UnitPrice = item.UnitPrice;
                 objOrderDetail.Quantity = item.Quantity;
+
+                objRestaurantDBEntities.OrderDetails.Add(objOrderDetail);
+                objRestaurantDBEntities.SaveChanges();
+
+                Transaction objTransaction = new Transaction();
+                objTransaction.ItemId = item.ItemId;
+                objTransaction.Quantity = (-1) * item.Quantity;
+                objTransaction.TransacetionDate = DateTime.Now;
+                objTransaction.TypeId = 2;
+
+                objRestaurantDBEntities.Transactions.Add(objTransaction);
+                objRestaurantDBEntities.SaveChanges();
             }
 
             return true;

@@ -42,7 +42,10 @@ namespace RestaurantApp.Controllers
         [HttpPost]
         public JsonResult Index(OrderViewModel objOrderViewModel)
         {
-            return Json("", JsonRequestBehavior.AllowGet);
+            OrderRepository objOrderRepository = new OrderRepository();
+            objOrderRepository.AddOrder(objOrderViewModel);
+
+            return Json("Your Order has been Successfully Placed", JsonRequestBehavior.AllowGet);
         }
     }
 }
