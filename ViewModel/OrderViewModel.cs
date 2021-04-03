@@ -12,5 +12,7 @@ namespace RestaurantApp.ViewModel
         public int CustomerId { get; set; }
         public string OrderNumber { get; set; }
         public DateTime OrderDate { get; set; }
+        public decimal FinalTotal { get; set; }
+        public decimal Quantity { get; set; }
     }
 }
